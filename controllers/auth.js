@@ -2,8 +2,9 @@ const User = require('../models/User')
 const {StatusCodes} = require('http-status-codes')
 
 const register = (req, res) => {
-    const user = User.create({...req.body})
-    res.status(StatusCodes.CREATED).json({user})
+    const user = User.create({ ...req.body })
+    const token = user.createJWT()
+    res.status(StatusCodes.CREATED).json({token:token})
 }
 
 const login = (req, res) => {

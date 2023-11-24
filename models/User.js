@@ -26,4 +26,8 @@ UserSchema.pre('save', async function () {
     this.password = await bcrypt.hash(this.password, salt)
 })
 
+UserSchema.methods.craateJWT = function () {
+    return JsonWebTokenError.sign({ userId: this_id , name:this.name}, process.env.jwtSecret, {expiresIn: "30d"})
+}
+
 module.exports = mongoose.model('User', UserSchema)
