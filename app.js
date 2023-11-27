@@ -8,6 +8,8 @@ const app = express();
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
+const authenticateUser = require('./middleware/authentication')
+
 app.use(express.json());
 // extra packages
 
@@ -15,7 +17,7 @@ app.use(express.json());
 const jobsRoute = require('./routes/jobs')
 const authRoute = require('./routes/auth')
 
-app.use('/api/v1/jobs', jobsRoute)
+app.use('/api/v1/jobs', authenticateUser, jobsRoute)
 app.use('/api/v1/auth', authRoute)
 
 // not found and errors
