@@ -8,6 +8,7 @@ const app = express();
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
+// auth middleware
 const authenticateUser = require('./middleware/authentication')
 
 app.use(express.json());
